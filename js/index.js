@@ -45,7 +45,7 @@ function flipCard(element) {
         }
 
         isColourGenerate = true; // reset to generate colour again
-        document.getElementById("score").innerHTML=`${scores.map((score, index) => `Player ${index + 1} Score: ${score}`).join('\n')}`;
+        document.getElementById("score").innerHTML=`${scores.map((score, index) => `Player ${index + 1} Score: ${score}`).join('<br>')}`;
     }
 }
 
