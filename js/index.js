@@ -41,10 +41,10 @@ function flipCard(element) {
         if (isColourSame(boxColor, generatedColour)) {
             updateScore();
             isColourGenerate = true; // reset to generate colour again
-            checkGameEnd();
+           
             setTimeout(() => {
                 element.style.display = 'none';
-            
+                checkGameEnd();
             }, 2000);
         } else {
             changePlayer();
