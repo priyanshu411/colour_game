@@ -1,9 +1,16 @@
-let noOfPlayers=window.onload=prompt("how many player");
+let noOfPlayers=2;
+window.onload=()=>{
+    // prompt("how many player");
+    generateBox();
+    document.getElementById("currentPlayer").innerHTML=`player ${currentPlayer} chance`;
+    document.getElementById("score").innerHTML=`${scores.map((score, index) => `Player ${index + 1} Score: ${score}`).join('<br>')}`;
+}
+
 
 const NO_OF_BOXES = 12;
 const COLOUR_LIST = ['yellow', 'green', 'pink','blue'];
 const DEFAULT_COLOUR='#3498db'
-generateBox();
+
 let currentPlayer = 1;
 let isFlipped = false;
 let isColourGenerate = true;
@@ -43,7 +50,7 @@ function flipCard(element) {
                 document.getElementById(value).style.backgroundColor = DEFAULT_COLOUR;
             }, 2000);
         }
-
+        document.getElementById("currentPlayer").innerHTML=`player ${currentPlayer} chance`;
         isColourGenerate = true; // reset to generate colour again
         document.getElementById("score").innerHTML=`${scores.map((score, index) => `Player ${index + 1} Score: ${score}`).join('<br>')}`;
     }
