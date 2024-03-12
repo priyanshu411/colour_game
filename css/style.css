@@ -1,19 +1,12 @@
-body {
-  transition: background-color 0.5s;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-}
 
 .container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
   justify-content: center;
+  width: fit-content;
+  margin: auto;
 }
-
 .box {
   width: 100px;
   height: 100px;
