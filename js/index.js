@@ -1,11 +1,13 @@
-let noOfPlayers=2;
+let noOfPlayers;
+let scores;
 window.onload=()=>{
-    // prompt("how many player");
+    noOfPlayers=prompt("how many player");
+    noOfPlayers=noOfPlayers==null?2:noOfPlayers;
     generateBox();
     document.getElementById("currentPlayer").innerHTML=`player ${currentPlayer} chance`;
+    scores = Array.from({ length: noOfPlayers }, () => 0); // Scores for each player
     document.getElementById("score").innerHTML=`${scores.map((score, index) => `Player ${index + 1} Score: ${score}`).join('<br>')}`;
 }
-
 
 const NO_OF_BOXES = 12;
 const COLOUR_LIST = ['yellow', 'green', 'pink','blue'];
@@ -16,8 +18,7 @@ let isFlipped = false;
 let isColourGenerate = true;
 let rotationAngle = 0;
 let generatedColour;
-
-let scores = Array.from({ length: noOfPlayers }, () => 0); // Scores for each player
+ 
 
 
 // Generate colours for boxes
@@ -39,19 +40,24 @@ function flipCard(element) {
 
         if (isColourSame(boxColor, generatedColour)) {
             updateScore();
+            isColourGenerate = true; // reset to generate colour again
+            checkGameEnd();
             setTimeout(() => {
                 element.style.display = 'none';
-                checkGameEnd();
+            
             }, 2000);
         } else {
             changePlayer();
+            console.log(currentPlayer);
             setTimeout(() => {
                 element.classList.toggle('flipped');
                 document.getElementById(value).style.backgroundColor = DEFAULT_COLOUR;
+                document.getElementById("currentPlayer").innerHTML=`player ${currentPlayer} chance`;
+                isColourGenerate = true; // reset to generate colour again
             }, 2000);
         }
-        document.getElementById("currentPlayer").innerHTML=`player ${currentPlayer} chance`;
-        isColourGenerate = true; // reset to generate colour again
+        
+       
         document.getElementById("score").innerHTML=`${scores.map((score, index) => `Player ${index + 1} Score: ${score}`).join('<br>')}`;
     }
 }
